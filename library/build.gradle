@@ -50,5 +50,19 @@ afterEvaluate {
                 from components.release
             }
         }
+
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/FlutterGenerator/SnowFall")
+                credentials {
+                    def githubProperties = new Properties()
+                    githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
+
+                    username = githubProperties['gpr.usr']
+                    password = githubProperties['gpr.key']
+                }
+            }
+        }
     }
 }
