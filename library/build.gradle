@@ -5,13 +5,19 @@ plugins {
 
 group = 'com.github.FlutterGenerator'
 
+// ✅ Читаем github.properties ОДИН раз
+def githubProperties = new Properties()
+def githubPropertiesFile = rootProject.file("github.properties")
+if (githubPropertiesFile.exists()) {
+    githubProperties.load(new FileInputStream(githubPropertiesFile))
+}
+
 android {
     compileSdkVersion 36
     namespace = "com.uz.snowfall"
 
     defaultConfig {
         minSdkVersion 21
-        //noinspection OldTargetApi
         targetSdkVersion 33
         versionCode 1
         versionName "1.0"
@@ -28,6 +34,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+
     publishing {
         singleVariant("release") {
             withSourcesJar()
@@ -46,19 +53,16 @@ afterEvaluate {
                 groupId = 'com.github.FlutterGenerator'
                 artifactId = 'SnowFall'
                 version = 'v0.0.1'
-
                 from components.release
             }
         }
 
+        // ✅ Используем переменные, загруженные выше
         repositories {
             maven {
                 name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/FlutterGenerator/SnowFall")
                 credentials {
-                    def githubProperties = new Properties()
-                    githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
-
                     username = githubProperties['gpr.usr']
                     password = githubProperties['gpr.key']
                 }
