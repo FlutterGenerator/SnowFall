@@ -9,8 +9,7 @@ android {
     defaultConfig {
         applicationId "com.uz.snow"
         minSdk = 21
-        //noinspection OldTargetApi
-        targetSdk = 33
+        targetSdk = 35
         versionCode 1
         versionName "1.0"
     }
