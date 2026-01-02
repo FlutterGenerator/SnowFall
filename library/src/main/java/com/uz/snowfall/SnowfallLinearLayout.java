@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import java.util.*;
 
-public class Library extends LinearLayout {
+public class SnowfallLinearLayout extends LinearLayout {
   private static final float BASE_SIZE = 20.0f;
   private static final float BASE_SPEED = 2.0f;
   private static final float ROTATION_SPEED = 1.0f;
@@ -18,21 +18,21 @@ public class Library extends LinearLayout {
   private Bitmap snowflakeBitmap;
   private final List<Snowflake> snowflakes;
 
-  public Library(Context context) {
+  public SnowfallLinearLayout(Context context) {
     super(context);
     this.snowflakes = new ArrayList<>();
     this.random = new Random();
     init();
   }
 
-  public Library(Context context, AttributeSet attrs) {
+  public SnowfallLinearLayout(Context context, AttributeSet attrs) {
     super(context, attrs);
     this.snowflakes = new ArrayList<>();
     this.random = new Random();
     init();
   }
 
-  public Library(Context context, AttributeSet attrs, int defStyleAttr) {
+  public SnowfallLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     this.snowflakes = new ArrayList<>();
     this.random = new Random();
